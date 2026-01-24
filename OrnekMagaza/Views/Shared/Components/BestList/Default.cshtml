@@ -1,0 +1,23 @@
+﻿@model List<OrnekMagaza.Models.Products>
+
+@foreach (var item in Model)
+{
+
+
+    <div class="row g-4">
+        <div class="col-6 col-md-3">
+            <div class="card h-100 product-card">
+                <span class="badge bg-danger position-absolute m-2">@item.CategoryID</span>
+                <img src="@item.ProductImage" class="card-img-top" alt="Ürün">
+                <div class="card-body">
+                    <h6 class="card-title">@item.ProductName</h6>
+                    <p class="fw-bold">@item.UnitPrice TL</p>
+                    <a asp-controller="Home" asp-action="Urundetay" asp-route-id="@item.ProductID">
+                    <button class="btn btn-sm btn-primary w-100">İncele</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
