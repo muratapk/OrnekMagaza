@@ -17,7 +17,7 @@ namespace Magazamapim.Controllers
             _context = context;
         }
         [HttpGet]
-        [Authorize(Roles ="Admin")]
+        
         public IActionResult GetProducts()
         {
             var products = _context.Products.ToList();

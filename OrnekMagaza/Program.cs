@@ -12,7 +12,7 @@ builder.Services.AddDbContext<MagazaDb>(options =>
     )
 );
 
-
+builder.Services.AddHttpClient();
 
 
 var app = builder.Build();
