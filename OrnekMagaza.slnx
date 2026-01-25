@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="MagazaApi/MagazaApi.csproj" Id="410aedc2-ddd3-4070-a468-4ac459f3942a" />
+  <Project Path="Magazamapim/Magazamapim.csproj" Id="c3b8641c-cf71-47ca-9c8b-751ad8bb24e1" />
   <Project Path="OrnekMagaza/OrnekMagaza.csproj" />
 </Solution>

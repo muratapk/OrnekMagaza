@@ -1,0 +1,6 @@
+@Magazamapim_HostAddress = http://localhost:5008
+
+GET {{Magazamapim_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

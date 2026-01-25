@@ -11,10 +11,10 @@ namespace MagazaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class Auth2Controller : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        public AuthController(IConfiguration configuration)
+        public Auth2Controller(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -44,8 +44,8 @@ namespace MagazaApi.Controllers
                    new Claim(ClaimTypes.Role, "Admin")
                }),
                 Expires = DateTime.UtcNow.AddMinutes(
-                    double.Parse(jwtSettings["ExpireMinutes"])
-                ),
+    double.Parse(jwtSettings["ExpiryInMinutes"])
+),
                 Issuer = jwtSettings["Issuer"],
                 Audience = jwtSettings["Audience"],
                 SigningCredentials = new SigningCredentials(
