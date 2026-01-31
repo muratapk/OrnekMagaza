@@ -1,0 +1,16 @@
+﻿@model OrnekMagaza.Models.ProductImage
+@{
+    ViewData["Title"] = "CokluResim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>CokluResim</h1>
+
+<form asp-action="CokluResim" asp-controller="ProductImages"
+      method="post" enctype="multipart/form-data">
+    <input type="text" name="ProductId" value="@ViewBag.ProductId" />
+    <input type="text" asp-for="Title" placeholder="Resim Başlığın Yazınız" class="form-control mb-2"/>
+    <input type="file" asp-for="ImageFile" multiple accept=".jpg;.jpeg;.gif;.png;.webp" />
+    <button type="submit" class="btn btn-primary mt-2">Yükle</button>
+
+</form>

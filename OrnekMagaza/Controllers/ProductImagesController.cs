@@ -42,6 +42,34 @@ namespace OrnekMagaza.Controllers
 
             return View(productImage);
         }
+        [HttpGet]
+        public IActionResult CokluResim(int id)
+        {
+            ViewBag.ProductId = _context.Products.Where(p => p.ProductID == id).Select(p => p.ProductID).FirstOrDefault();
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult CokluResim(List<IFormFile> ImageFile, int ProductId)
+        {
+            foreach (var ImageFl in ImageFile)
+            {
+                // Burada her bir dosyayı işleyebilirsiniz
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFl.FileName);
+                var filePath = Path.Combine("wwwroot/images", fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    ImageFl.CopyTo(stream);
+                }
+                ProductImage pi = new ProductImage();
+                pi.ProductId = ProductId;
+                pi.ImageUrl = "/images/" + fileName;
+                _context.ProductImages.Add(pi);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Products", new { id = ProductId });
+        }
+
 
         // GET: ProductImages/Create
         public IActionResult Create()
