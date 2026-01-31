@@ -54,8 +54,33 @@ namespace OrnekMagaza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductImageId,ImageUrl,ProductId,IsMain,Title")] ProductImage productImage)
+        public async Task<IActionResult> Create([Bind("ProductImageId,ImageUrl,ProductId,IsMain,Title")] ProductImage productImage,IFormFile ImageFile)
         {
+
+            if(ImageFile != null && ImageFile.Length > 0)
+            {
+                // Generate a unique file name
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                //path.getExtension gelen dosyanın uzantısını alır .jpg .png gibi
+
+                var filePath = Path.Combine("wwwroot/images", fileName);
+                // Save the file to the server nereye kayıt olacağını
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                    //filestream dosyayı oluşturur ve kopyalar
+                }
+                // Set the ImageUrl property to the relative path
+                productImage.ImageUrl = "/images/" + fileName;
+            }
+
+
+
+
+
+
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(productImage);
