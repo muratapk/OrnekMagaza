@@ -14,6 +14,6 @@ namespace OrnekMagaza.Models
         public string Title { get; set; }=string.Empty;
 
         [NotMapped]
-        public IFormFile ? ImageFile { get; set; }
+        public IFormFile ? ImageFile { get; set; }= null;
     }
 }
