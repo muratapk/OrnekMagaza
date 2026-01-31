@@ -12,6 +12,8 @@ namespace OrnekMagaza.Models
         public Categories ? Category { get; set; }
         public decimal ? UnitPrice { get; set; }
         public string ProductImage { get; set; } = string.Empty;
+        public ICollection<ProductImage> ? ProductImages { get; set; }
+        //bir ürün eklenirken resim yüklemek için kullanılacak özellik
         [NotMapped]
         public IFormFile ? ImageFile { get; set; }
     }

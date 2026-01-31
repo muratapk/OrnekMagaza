@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrnekMagaza.Data;
 
@@ -11,9 +12,11 @@ using OrnekMagaza.Data;
 namespace OrnekMagaza.Migrations
 {
     [DbContext(typeof(MagazaDb))]
-    partial class MagazaDbModelSnapshot : ModelSnapshot
+    [Migration("20260131155039_productImage")]
+    partial class productImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

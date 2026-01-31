@@ -10,5 +10,6 @@ namespace OrnekMagaza.Data
         }
        public DbSet<Categories> Categories { get; set; }
        public DbSet<Products> Products { get; set; }
+       public DbSet<ProductImage> ProductImages { get; set; }
     }
 }
