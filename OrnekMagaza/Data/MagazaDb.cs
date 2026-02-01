@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OrnekMagaza.Models;
 
 namespace OrnekMagaza.Data
 {
-    public class MagazaDb: DbContext
+    public class MagazaDb: IdentityDbContext<AppUser, AppRole, string>
     {
         public MagazaDb(DbContextOptions<MagazaDb> options) : base(options)
         {
