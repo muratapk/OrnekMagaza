@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrnekMagaza.Data;
 using OrnekMagaza.Models;
+using OrnekMagaza.ViewModel;
 
 namespace OrnekMagaza.Controllers
 {
@@ -23,8 +24,35 @@ namespace OrnekMagaza.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if(User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            var user = new AppUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                AdSoyad = model.AdSoyad,
+                Id = Guid.NewGuid().ToString()
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError("", error.Description);
+
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Index()
         {
             return View();

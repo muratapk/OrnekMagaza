@@ -23,7 +23,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Admin Panel</span>
-            <span class="text-light">Hoşgeldin, Admin</span>
+            <span class="text-light">Hoşgeldin, @User.Identity.Name</span>
         </div>
     </nav>
 
@@ -52,7 +52,7 @@
                         <a class="nav-link" href="/Categories/Index">Kategoriler</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Çıkış</a>
+                        <a class="nav-link text-danger" href="/Login/Logout">Çıkış</a>
                     </li>
                 </ul>
             </div>
