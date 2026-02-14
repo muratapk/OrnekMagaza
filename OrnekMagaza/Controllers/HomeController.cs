@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OrnekMagaza.Data;
 using OrnekMagaza.Models;
 
@@ -90,6 +91,21 @@ namespace OrnekMagaza.Controllers
                 }
             }
             return NotFound("Ürün bulunamadı");
+        }
+        [Authorize]
+        public IActionResult CartConfirmation()
+        {
+            var sessionCart = HttpContext.Session.GetString("Cart");
+            if (sessionCart != null)
+            {
+                var Cart = System.Text.Json.JsonSerializer.Deserialize<List<Products>>(sessionCart);
+                return View(Cart);
+            }
+            else
+            {
+                return View(new List<Products>());
+            }
+
         }
 
     }

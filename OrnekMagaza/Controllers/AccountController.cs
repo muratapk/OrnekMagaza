@@ -53,6 +53,23 @@ namespace OrnekMagaza.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Logoout()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        /// <summary>
+        /// /login sayfasına yönlendirme işlemi yapar. Eğer kullanıcı zaten giriş yapmışsa anasayfaya yönlendirir.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Login()
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
