@@ -87,15 +87,7 @@
             </li>
         </ul>
          @RenderBody()
-        <div class="tab-content" id="productTabsContent">
-            <div class="tab-pane fade show active" id="trend">
-                @await Component.InvokeAsync("TrendList")
-            </div>
-
-            <div class="tab-pane fade " id="best">
-                @await Component.InvokeAsync("BestList")
-            </div>
-        </div>
+        
     </section>
 
     <div class="modal fade" id="loginModal" tabindex="-1">
@@ -142,5 +134,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function(){
+            $(".addtocart").click(function(e){
+                e.preventDefault();
+                var productId = $(this).data("id");
+                $.ajax({
+                    url: '/Home/AddToCart',
+                    method: 'POST',
+                    data: { id: productId },
+                    success: function(response) {
+                        alert("Ürün sepete eklendi!");
+                    },
+                    error: function() {
+                        alert("Sepete eklenirken bir hata oluştu.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

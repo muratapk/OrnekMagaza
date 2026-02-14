@@ -31,6 +31,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false;
 
 }).AddEntityFrameworkStores<MagazaDb>();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);

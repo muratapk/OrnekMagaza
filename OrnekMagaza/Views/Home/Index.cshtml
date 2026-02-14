@@ -4,3 +4,12 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
+<div class="tab-content" id="productTabsContent">
+    <div class="tab-pane fade show active" id="trend">
+        @await Component.InvokeAsync("TrendList")
+    </div>
+
+    <div class="tab-pane fade " id="best">
+        @await Component.InvokeAsync("BestList")
+    </div>
+</div>

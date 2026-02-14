@@ -1,10 +1,11 @@
 ﻿@model List<OrnekMagaza.Models.Products>
 
-@foreach (var item in Model)
-{
 
 
     <div class="row g-4">
+@foreach (var item in Model)
+{
+
         <div class="col-6 col-md-3">
             <div class="card h-100 product-card">
                 <span class="badge bg-danger position-absolute m-2">@item.CategoryID</span>
@@ -18,6 +19,6 @@
                 </div>
             </div>
         </div>
+}
     </div>
 
-}
