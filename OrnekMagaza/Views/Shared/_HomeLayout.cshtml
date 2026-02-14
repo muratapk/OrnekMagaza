@@ -137,7 +137,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         $(document).ready(function(){
-            
+         /////////////////////////////////////////////   
             $(".carttoadd").click(function(e){
                
                 e.preventDefault();
@@ -154,7 +154,26 @@
                     }
                 });
             });
-        });
+            /////////////////
+            $(".silme").click(function(e){
+               
+               e.preventDefault();
+               var productId = $(this).data("id");
+               $.ajax({
+                   url: '/Home/RemoveFromCart',
+                   method: 'POST',
+                   data: { id: productId },
+                   success: function(response) {
+                       alert("Ürün sepetten kaldırıldı!");
+                       window.location.reload(); // Sayfayı yenileyerek güncel sepeti göster
+                   },
+                   error: function() {
+                       alert("Sepetten kaldırılırken bir hata oluştu.");
+                   }
+               });
+          });
+         /////////////////////////////////
+       });
     </script>
 </body>
 </html>
