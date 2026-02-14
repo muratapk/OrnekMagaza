@@ -5,7 +5,8 @@
 }
 
 <h1>Sepetim</h1>
-
+<hr />
+<a href="@Url.Action("CartConfirmation", "Home")" class="btn btn-primary">Sepeti Oanyla</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,6 +25,7 @@
                 <td>@item.UnitPrice</td>
                 <td>@item.CategoryID</td>
                 <td><a href="#" data-id="@item.ProductID" class="btn btn-danger silme">Sepet Sil</a></td>
+               
             </tr>
         }
     </tbody>
