@@ -39,7 +39,7 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Kullanıcılar</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="AppUsers">Kullanıcılar</a>
                         </li>
                     }
                     

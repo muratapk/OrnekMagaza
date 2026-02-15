@@ -1,0 +1,39 @@
+﻿@model List<OrnekMagaza.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h1>Index</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <h1>Kategoriler</h1>
+        </div>
+        <div class="col-9">
+            <h1>Ürünler</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ürün Resim</th>
+                        <th>Ürün Adı</th>
+                        <th>Ürün Fiyatı</th>
+                        <th>Kategorisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="@item.ProductImage" height="100px" width="100px" /></td>
+                            <td>@item.ProductName</td>
+                            <td>@item.UnitPrice</td>
+                            <td>@item.CategoryID</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
