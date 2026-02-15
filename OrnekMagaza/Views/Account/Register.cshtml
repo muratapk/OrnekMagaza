@@ -37,10 +37,15 @@
 			</div>
 			<div class="main">
                     <input type="text" class="form-control" asp-for="AdSoyad" placeholder="Adınız Soyadınız" autofocus>
+					<span asp-validation-for="AdSoyad" class="text-danger"></span>
 					<input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı Adını Giriniz" autofocus>
+					<span asp-validation-for="UserName" class="text-danger"></span> 
 					<input type="text" class="form-control" asp-for="Email" placeholder="Email" autofocus>
+					<span asp-validation-for="Email" class="text-danger"></span> 
 					<input type="password" class="form-control" asp-for="Password" placeholder="Şifreniz">
-					<input type="password" class="form-control" asp-for="Password" placeholder="Şifre Tekrar" >
+					<span asp-validation-for="Password" class="text-danger"></span> 
+					<input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Şifre Tekrar" >
+					<span asp-validation-for="ConfirmPassword" class="text-danger"></span> 
 
 				Are you a business? <a href=""> Get started here</a>
 				<span class="clearfix"></span>
@@ -68,3 +73,14 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script>
+	$(document).ready(function(){
+	
+	
+	
+	});
+
+	
+</script>

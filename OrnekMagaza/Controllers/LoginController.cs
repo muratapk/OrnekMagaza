@@ -32,10 +32,13 @@ namespace OrnekMagaza.Controllers
             var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, false, lockoutOnFailure: true);
             if (result.Succeeded)
             {
+                TempData["Success"] = "Başarıyla giriş yapıldı.";
                 return RedirectToAction("Index", "Categories");
+                
             }
             else
             {
+                TempData["Error"] = "Geçersiz giriş denemesi.";
                 ModelState.AddModelError("", "Geçersiz giriş denemesi.");
                 return View();
             }
@@ -43,6 +46,7 @@ namespace OrnekMagaza.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            TempData["Success"] = "Başarıyla çıkış yapıldı.";
             return RedirectToAction("Index", "Home");
         }
     }

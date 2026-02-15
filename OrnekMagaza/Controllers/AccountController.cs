@@ -11,14 +11,16 @@ namespace OrnekMagaza.Controllers
         private readonly UserManager<AppUser> _userManager;
         //ekleme silme güncelleme işlemleri için
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<AppRole> _roleManager;
         //login işlemleri için
         private readonly MagazaDb _context;
         //db işlemleri için
-        public AccountController( UserManager<AppUser> userManager,  SignInManager<AppUser> signInManager,  MagazaDb context)
+        public AccountController( UserManager<AppUser> userManager,  SignInManager<AppUser> signInManager,  MagazaDb context,RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _roleManager = roleManager;
             //bağımlılıkları constructor ile alıyoruz
         }
         [HttpGet]
@@ -33,6 +35,11 @@ namespace OrnekMagaza.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             var user = new AppUser
             {
                 UserName = model.Email,
@@ -45,11 +52,28 @@ namespace OrnekMagaza.Controllers
 
             if (!result.Succeeded)
             {
+
+                
+                //kullanıcı rol tablosu Musteri olarak bunu ekle
                 foreach (var error in result.Errors)
                     ModelState.AddModelError("", error.Description);
 
                 return View(model);
             }
+
+            if (!await _roleManager.RoleExistsAsync("Musteri"))
+            {
+                // await _roleManager.CreateAsync(new AppRole("Musteri"));
+                var role = new AppRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Musteri",
+                    NormalizedName = "MUSTERI"
+                };
+                await _roleManager.CreateAsync(role);
+            }
+            //rol tanımlayı ata ve kullanıcıya rolü ekle
+            await _userManager.AddToRoleAsync(user, "Musteri");
             return RedirectToAction("Index", "Home");
         }
 

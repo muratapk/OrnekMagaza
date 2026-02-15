@@ -86,6 +86,20 @@
                 <button class="nav-link" id="best-tab" data-bs-toggle="tab" data-bs-target="#best" type="button">En Çok Satanlar</button>
             </li>
         </ul>
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        else if (TempData["Error"] != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
          @RenderBody()
         
     </section>

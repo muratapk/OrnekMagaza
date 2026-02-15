@@ -6,6 +6,7 @@ namespace OrnekMagaza.Models
     {
         public AppRole() : base()
         {
+            Id = Guid.NewGuid().ToString();
         }
 
         public AppRole(string roleName) : base(roleName)
